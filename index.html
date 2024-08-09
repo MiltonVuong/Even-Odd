@@ -1,16 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <title>Even Odd Game</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  Hello world
-  <script src="script.js"></script>
+  <script>
+
+    // declared variables
+    let playerChoice;
+    let randomNum1;
+    let randomNum2;
+    let sum;
+    let result;
+    let wins = 0;
+    let losses = 0;
+    let playAgain;
+    const playerName = prompt("Hello, what is your name?");
+    // full game loop // playagain
+    do {
+      // player input loop // playerchoice
+      do {
+        // prompt the user to enter either 'even' or 'odd'
+        playerChoice = prompt(`${playerName}, do you pick 'even' or 'odd'?`);
+        // check if the input is valid
+        if (playerChoice === null || (playerChoice.toLowerCase() !== 'even' && playerChoice.toLowerCase() !== 'odd')) {
+          alert(`${playerName}, that's an invalid input. Please enter either 'even' or 'odd'.`);
+        }
+      } while (playerChoice === null || (playerChoice.toLowerCase() !== 'even' && playerChoice.toLowerCase() !== 'odd'));
+      // generate two random numbers between 1 and 4
+      randomNum1 = Math.floor(Math.random() * 4) + 1;
+      randomNum2 = Math.floor(Math.random() * 4) + 1;
+      // calculate the sum of the two random numbers
+      sum = randomNum1 + randomNum2;
+      // countdown from 3 to 1
+      for (let i = 3; i > 0; i--) {
+        alert(i);
+      }
+      // show the player's choice // added this in for flavor
+      alert(`${playerChoice}!`);
+      // determine if the sum is even or odd and update the result and wins/losses accordingly
+      if (sum % 2 === 0) {
+        result = "Won";
+        wins++;
+      } else {
+        result = "Lose";
+        losses++;
+      }
+      // display the result and ask if the player wants to play again
+      switch (sum % 2) {
+        case 0:
+          alert(`${playerName}, you chose ${playerChoice}, the sum was ${sum}, which is an even number, you ${result}!`);
+          playAgain = prompt(`That's ${wins} wins and ${losses} losses!\nWould you like to play again? y/n`);
+          break;
+        case 1:
+          alert(`${playerName}, you chose ${playerChoice}, the sum was ${sum}, which is an odd number, you ${result}!`);
+          playAgain = prompt(`That's ${wins} wins and ${losses} losses!\nWould you like to play again? y/n`);
+          break;
+      }
+    } while (playAgain.toLowerCase() === "y");
+  </script>
 </body>
 
 </html>
